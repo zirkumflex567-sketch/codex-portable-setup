@@ -45,7 +45,7 @@ foreach ($targetHost in $linuxHosts) {
     Write-Host ""
     Write-Host "Refreshing $targetHost ..."
 
-    $remoteCommand = "mkdir -p ~/workspace; if [ -d $remoteRepo/.git ]; then git -C $remoteRepo pull --ff-only || { rm -rf $remoteRepo; git clone $repoUrl $remoteRepo; }; else git clone $repoUrl $remoteRepo; fi; chmod +x $remoteRepo/scripts/install.sh; bash $remoteRepo/scripts/install.sh"
+    $remoteCommand = "mkdir -p ~/workspace; if [ -d $remoteRepo/.git ]; then git -C $remoteRepo pull --ff-only || { rm -rf $remoteRepo; git clone $repoUrl $remoteRepo; }; else git clone $repoUrl $remoteRepo; fi; bash $remoteRepo/scripts/install.sh"
     ssh $targetHost $remoteCommand
 }
 
