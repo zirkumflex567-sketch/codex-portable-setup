@@ -48,7 +48,7 @@ $remoteRepo/scripts/install.sh
 
     $tempFile = New-TemporaryFile
     try {
-        Set-Content -Path $tempFile -Value $remoteScript -Encoding utf8NoBOM
+        Set-Content -Path $tempFile -Value $remoteScript -Encoding UTF8
         Get-Content -Raw -Path $tempFile | ssh $targetHost bash
     }
     finally {
