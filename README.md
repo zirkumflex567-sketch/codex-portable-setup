@@ -2,6 +2,12 @@
 
 Portable export of the current Codex workflow, adapted skills, and plugin setup.
 
+This repo is the central source of truth for the shared Codex baseline across:
+
+- Shadow
+- HomePC
+- htown
+
 ## What This Repo Contains
 
 - `codex/AGENTS.md`
@@ -16,6 +22,10 @@ Portable export of the current Codex workflow, adapted skills, and plugin setup.
   Helper script to copy this setup into a target Windows machine's `%USERPROFILE%\.codex`.
 - `scripts/install.sh`
   Helper script to copy this setup into a target Linux machine's `~/.codex`.
+- `scripts/sync-all.ps1`
+  Orchestrates a baseline refresh across Shadow, HomePC, and `htown` from the Windows side.
+- `docs/machines.md`
+  Central machine matrix, roles, baseline, and allowed machine-specific differences.
 
 ## What Is Intentionally Not Included
 
@@ -105,6 +115,26 @@ HomePC and secondary hosts like `htown` should follow the same path:
 - same CLI helpers where portable
 
 Machine-specific MCPs can still be added locally afterwards, but the baseline workflow should stay identical.
+
+## Update Rule
+
+When the shared workflow changes:
+
+1. Update this repo
+2. Commit and push it
+3. Run the cross-machine sync script from Shadow:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\sync-all.ps1
+```
+
+That keeps:
+
+- Shadow aligned on workflow files and exported skills
+- HomePC aligned via SSH
+- `htown` aligned via SSH
+
+The local Shadow sync intentionally preserves Shadow-specific config details while still refreshing the shared baseline.
 
 ## Notes
 

@@ -32,6 +32,20 @@ echo "Installing portable CLIs..."
 mkdir -p "$HOME/.local"
 npm install -g --prefix "$HOME/.local" ctx7 notebooklm-mcp
 
+PATH_SNIPPET='
+# Codex portable setup
+if [ -d "$HOME/.local/bin" ] && [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
+  export PATH="$HOME/.local/bin:$PATH"
+fi
+'
+
+for profile in "$HOME/.bashrc" "$HOME/.profile"; do
+  touch "$profile"
+  if ! grep -q "Codex portable setup" "$profile"; then
+    printf "%s\n" "$PATH_SNIPPET" >> "$profile"
+  fi
+done
+
 echo
 echo "Portable Codex setup installed."
 echo "Review ~/.codex/config.toml for machine-specific MCP paths."
