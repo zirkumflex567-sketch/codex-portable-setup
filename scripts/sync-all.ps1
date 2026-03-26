@@ -34,26 +34,8 @@ foreach ($targetHost in $linuxHosts) {
     Write-Host ""
     Write-Host "Refreshing $targetHost ..."
 
-    $remoteScript = @"
-set -e
-mkdir -p ~/workspace
-if [ -d $remoteRepo/.git ]; then
-  git -C $remoteRepo pull --ff-only
-else
-  git clone $repoUrl $remoteRepo
-fi
-chmod +x $remoteRepo/scripts/install.sh
-$remoteRepo/scripts/install.sh
-"@
-
-    $tempFile = New-TemporaryFile
-    try {
-        Set-Content -Path $tempFile -Value $remoteScript -Encoding UTF8
-        Get-Content -Raw -Path $tempFile | ssh $targetHost bash
-    }
-    finally {
-        Remove-Item -Force $tempFile -ErrorAction SilentlyContinue
-    }
+    $remoteCommand = "mkdir -p ~/workspace; if [ -d $remoteRepo/.git ]; then git -C $remoteRepo pull --ff-only || { rm -rf $remoteRepo; git clone $repoUrl $remoteRepo; }; else git clone $repoUrl $remoteRepo; fi; chmod +x $remoteRepo/scripts/install.sh; bash $remoteRepo/scripts/install.sh"
+    ssh $targetHost $remoteCommand
 }
 
 Write-Host ""
