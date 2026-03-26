@@ -24,14 +24,16 @@ find "$SOURCE_CODEX/skills" -mindepth 1 -maxdepth 1 -type d | while read -r skil
   destination="$TARGET_SKILLS/$skill_name"
   rm -rf "$destination"
   cp -R "$skill_dir" "$destination"
-  echo "Installed skill $skill_name"
+echo "Installed skill $skill_name"
 done
 
 echo
 echo "Installing portable CLIs..."
-npm install -g ctx7 notebooklm-mcp
+mkdir -p "$HOME/.local"
+npm install -g --prefix "$HOME/.local" ctx7 notebooklm-mcp
 
 echo
 echo "Portable Codex setup installed."
 echo "Review ~/.codex/config.toml for machine-specific MCP paths."
+echo "Ensure ~/.local/bin is on PATH if ctx7 or notebooklm-mcp are not found immediately."
 echo "Finally restart Codex."

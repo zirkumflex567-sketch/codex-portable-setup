@@ -89,8 +89,10 @@ chmod +x ./scripts/install.sh
 The Linux installer mirrors the same workflow files, skill folders, and config template into `~/.codex` and installs:
 
 ```bash
-npm install -g ctx7 notebooklm-mcp
+npm install -g --prefix ~/.local ctx7 notebooklm-mcp
 ```
+
+Make sure `~/.local/bin` is on `PATH` for the target user.
 
 ## Goal
 
