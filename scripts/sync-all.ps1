@@ -30,9 +30,9 @@ Write-Host ""
 Write-Host "Ensuring portable CLIs on Shadow..."
 npm install -g ctx7 notebooklm-mcp
 
-foreach ($host in $linuxHosts) {
+foreach ($targetHost in $linuxHosts) {
     Write-Host ""
-    Write-Host "Refreshing $host ..."
+    Write-Host "Refreshing $targetHost ..."
 
     $remoteScript = @"
 set -e
@@ -49,7 +49,7 @@ $remoteRepo/scripts/install.sh
     $tempFile = New-TemporaryFile
     try {
         Set-Content -Path $tempFile -Value $remoteScript -Encoding utf8NoBOM
-        Get-Content -Raw -Path $tempFile | ssh $host bash
+        Get-Content -Raw -Path $tempFile | ssh $targetHost bash
     }
     finally {
         Remove-Item -Force $tempFile -ErrorAction SilentlyContinue
