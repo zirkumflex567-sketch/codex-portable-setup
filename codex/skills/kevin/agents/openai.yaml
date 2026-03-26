@@ -1,0 +1,4 @@
+interface:
+  display_name: "KEVIN"
+  short_description: "Universal workflow overlay with self-improvement"
+  default_prompt: "Nutze den KEVIN-Workflow fuer diesen Prompt: waehle den passenden Skill- und Tool-Stack, halte dich an den gemeinsamen 3-Maschinen-Workflow und erfasse wichtige Learnings fuer spaetere Verbesserung."

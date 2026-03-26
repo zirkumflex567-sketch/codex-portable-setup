@@ -5,9 +5,12 @@ REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 SOURCE_CODEX="$REPO_ROOT/codex"
 TARGET_CODEX="${HOME}/.codex"
 TARGET_SKILLS="${TARGET_CODEX}/skills"
+TARGET_LEARNINGS="${TARGET_CODEX}/.learnings"
+SOURCE_LEARNINGS="${SOURCE_CODEX}/templates/learnings"
 
 mkdir -p "$TARGET_CODEX"
 mkdir -p "$TARGET_SKILLS"
+mkdir -p "$TARGET_LEARNINGS"
 
 cp "$SOURCE_CODEX/AGENTS.md" "$TARGET_CODEX/AGENTS.md"
 cp "$SOURCE_CODEX/WORKFLOW.md" "$TARGET_CODEX/WORKFLOW.md"
@@ -25,6 +28,15 @@ find "$SOURCE_CODEX/skills" -mindepth 1 -maxdepth 1 -type d | while read -r skil
   rm -rf "$destination"
   cp -R "$skill_dir" "$destination"
 echo "Installed skill $skill_name"
+done
+
+find "$SOURCE_LEARNINGS" -mindepth 1 -maxdepth 1 -type f | while read -r learning_file; do
+  learning_name="$(basename "$learning_file")"
+  destination="$TARGET_LEARNINGS/$learning_name"
+  if [[ ! -f "$destination" ]]; then
+    cp "$learning_file" "$destination"
+    echo "Seeded learning file $learning_name"
+  fi
 done
 
 echo
@@ -50,4 +62,5 @@ echo
 echo "Portable Codex setup installed."
 echo "Review ~/.codex/config.toml for machine-specific MCP paths."
 echo "Ensure ~/.local/bin is on PATH if ctx7 or notebooklm-mcp are not found immediately."
+echo "Shared learning files live in ~/.codex/.learnings/."
 echo "Finally restart Codex."

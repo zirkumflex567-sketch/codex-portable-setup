@@ -28,6 +28,7 @@ Current shared baseline:
 - `gpt-5.4`
 - medium reasoning effort
 - `rmcp_client = true`
+- `using-superpowers` + `kevin` as the normal workflow pair
 - portable MCPs:
   - `playwright`
   - `notebooklm`
@@ -36,13 +37,15 @@ Current shared baseline:
 - portable CLIs:
   - `ctx7`
   - `notebooklm-mcp`
+- shared learnings templates under `.codex/.learnings/`
 
 ## Workflow Rules That Matter Everywhere
 
 - Every substantial task starts with a `Skill + Plugin Check`.
-- `using-superpowers` is the default process skill.
+- `using-superpowers` + `kevin` is the default workflow pair.
 - Prefer real tools and MCPs where they improve accuracy.
 - On Windows PowerShell, use PowerShell-native syntax and never assume Bash separators like `&&`.
+- Important reusable failures/corrections should be logged in `.codex/.learnings/` and promoted into the repo when they belong to the shared baseline.
 
 ## Machine Matrix
 

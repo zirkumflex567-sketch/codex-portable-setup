@@ -4,9 +4,12 @@ $repoRoot = Split-Path -Parent $PSScriptRoot
 $sourceCodex = Join-Path $repoRoot "codex"
 $targetCodex = Join-Path $env:USERPROFILE ".codex"
 $targetSkills = Join-Path $targetCodex "skills"
+$targetLearnings = Join-Path $targetCodex ".learnings"
+$sourceLearnings = Join-Path $sourceCodex "templates\\learnings"
 
 New-Item -ItemType Directory -Force -Path $targetCodex | Out-Null
 New-Item -ItemType Directory -Force -Path $targetSkills | Out-Null
+New-Item -ItemType Directory -Force -Path $targetLearnings | Out-Null
 
 Copy-Item -Force (Join-Path $sourceCodex "AGENTS.md") $targetCodex
 Copy-Item -Force (Join-Path $sourceCodex "WORKFLOW.md") $targetCodex
@@ -31,6 +34,14 @@ Get-ChildItem (Join-Path $sourceCodex "skills") -Directory | ForEach-Object {
     Write-Host "Installed skill $($_.Name)"
 }
 
+Get-ChildItem -Path $sourceLearnings -File | ForEach-Object {
+    $destination = Join-Path $targetLearnings $_.Name
+    if (-not (Test-Path $destination)) {
+        Copy-Item -Force $_.FullName $destination
+        Write-Host "Seeded learning file $($_.Name)"
+    }
+}
+
 Write-Host ""
 Write-Host "Installing portable CLIs..."
 npm install -g ctx7 notebooklm-mcp
@@ -38,4 +49,5 @@ npm install -g ctx7 notebooklm-mcp
 Write-Host ""
 Write-Host "Portable Codex setup installed."
 Write-Host "Review %USERPROFILE%\\.codex\\config.toml for machine-specific MCP paths."
+Write-Host "Shared learning files live in %USERPROFILE%\\.codex\\.learnings\\."
 Write-Host "Finally restart Codex."

@@ -16,8 +16,11 @@ This repo is the central source of truth for the shared Codex baseline across:
   Human-readable workflow guide with recommended skill stacks.
 - `codex/config.template.toml`
   Sanitized Codex config template.
+- `codex/templates/learnings/`
+  Seed files for the shared self-improvement logs under `.codex/.learnings/`.
 - `codex/skills/`
   Exported skills, including locally adapted Codex-compatible variants.
+  This now includes `kevin`, the universal workflow overlay for this setup.
 - `scripts/install.ps1`
   Helper script to copy this setup into a target Windows machine's `%USERPROFILE%\.codex`.
 - `scripts/install.sh`
@@ -74,6 +77,7 @@ The PowerShell installer also refreshes:
 - `%USERPROFILE%\.codex\skills\...`
 - `%USERPROFILE%\.codex\config.template.toml`
 - `%USERPROFILE%\.codex\config.toml` from the portable baseline
+- `%USERPROFILE%\.codex\.learnings\...` seed files if they do not exist yet
 
 If a target machine already has a `config.toml`, the installer creates a backup first and then writes the portable baseline so both machines start from the same workflow path.
 
@@ -104,15 +108,25 @@ npm install -g --prefix ~/.local ctx7 notebooklm-mcp
 
 Make sure `~/.local/bin` is on `PATH` for the target user.
 
+Both installers also seed:
+
+- `.codex/.learnings/LEARNINGS.md`
+- `.codex/.learnings/ERRORS.md`
+- `.codex/.learnings/FEATURE_REQUESTS.md`
+
+without overwriting an existing local learning history.
+
 ## Goal
 
 HomePC and secondary hosts like `htown` should follow the same path:
 
 - same `AGENTS.md`
 - same `WORKFLOW.md`
+- same `KEVIN` skill
 - same exported skills
 - same portable MCP defaults
 - same CLI helpers where portable
+- same self-improvement seed files and promotion path
 
 Machine-specific MCPs can still be added locally afterwards, but the baseline workflow should stay identical.
 
@@ -133,6 +147,7 @@ That keeps:
 - Shadow aligned on workflow files and exported skills
 - HomePC aligned via SSH
 - `htown` aligned via SSH
+- all three machines aligned on the `KEVIN` skill and learnings templates
 
 The local Shadow sync intentionally preserves Shadow-specific config details while still refreshing the shared baseline.
 
