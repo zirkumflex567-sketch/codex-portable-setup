@@ -1,0 +1,4 @@
+interface:
+  display_name: "Self-Improving Agent"
+  short_description: "ClawHub self-improvement workflow adapted for Codex"
+  default_prompt: "Nutze den Self-Improving-Agent-Workflow fuer diesen Prompt: halte Learnings, Fehler und fehlende Faehigkeiten fest und promote gemeinsame Verbesserungen in das zentrale Repo."

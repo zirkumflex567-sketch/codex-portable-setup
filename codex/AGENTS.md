@@ -19,8 +19,9 @@ Do not skip this check just because the task looks simple.
 For normal coding and research work, default to:
 - `using-superpowers`
 - `kevin`
+- `self-improving-agent`
 
-If another process skill is clearly more appropriate, use it too, but `using-superpowers` is the baseline workflow governor and `kevin` is the universal workflow overlay for this setup.
+If another process skill is clearly more appropriate, use it too, but `using-superpowers` is the baseline workflow governor, `kevin` is the universal workflow overlay for this setup, and `self-improving-agent` is the mandatory self-improvement companion.
 
 ## Skill Selection Order
 
@@ -31,8 +32,8 @@ Select skills in this order:
 4. Review/verification skill
 
 Preferred process/planning stack:
-- Small to medium feature work: `using-superpowers` + `kevin` + `feature-dev`
-- Larger feature or multi-step work: `using-superpowers` + `kevin` + `writing-plans`
+- Small to medium feature work: `using-superpowers` + `kevin` + `self-improving-agent` + `feature-dev`
+- Larger feature or multi-step work: `using-superpowers` + `kevin` + `self-improving-agent` + `writing-plans`
 - Structured execution from a plan: `subagent-driven-development` or `executing-plans`
 - Review checkpoints: `requesting-code-review`
 - Final wrap-up: `finishing-a-development-branch`
@@ -45,6 +46,7 @@ This setup is explicitly self-improving.
 
 For substantial work:
 - consult the shared workflow and `kevin` skill
+- always include the installed `self-improving-agent` skill, sourced from `https://clawhub.ai/pskoett/self-improving-agent`
 - log important failures, corrections, and missing capabilities into `%USERPROFILE%\.codex\.learnings\` on Windows or `~/.codex/.learnings/` on Linux
 - promote recurring, machine-independent learnings into the central workflow repo
 
@@ -121,6 +123,7 @@ Before final response:
 Always consider these installed skills during the Skill + Plugin Check:
 - `using-superpowers`
 - `kevin`
+- `self-improving-agent`
 - `feature-dev`
 - `writing-plans`
 - `subagent-driven-development`
@@ -157,7 +160,7 @@ The default behavior for this environment is not "answer first, think about skil
 The default behavior is:
 1. Check applicable skills
 2. Check relevant plugins/tools
-3. Include `kevin` when the prompt is substantial or the shared workflow matters
+3. Include `kevin` and `self-improving-agent` when the prompt is substantial or the shared workflow matters
 4. Announce selected workflow
 5. Execute with that workflow
 6. Capture/promote reusable learnings when needed

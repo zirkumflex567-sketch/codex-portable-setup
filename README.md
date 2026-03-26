@@ -21,6 +21,7 @@ This repo is the central source of truth for the shared Codex baseline across:
 - `codex/skills/`
   Exported skills, including locally adapted Codex-compatible variants.
   This now includes `kevin`, the universal workflow overlay for this setup.
+  It also includes the Codex-adapted `self-improving-agent` skill, explicitly sourced from [ClawHub](https://clawhub.ai/pskoett/self-improving-agent).
 - `scripts/install.ps1`
   Helper script to copy this setup into a target Windows machine's `%USERPROFILE%\.codex`.
 - `scripts/install.sh`
@@ -123,6 +124,7 @@ HomePC and secondary hosts like `htown` should follow the same path:
 - same `AGENTS.md`
 - same `WORKFLOW.md`
 - same `KEVIN` skill
+- same `self-improving-agent` skill
 - same exported skills
 - same portable MCP defaults
 - same CLI helpers where portable
@@ -148,6 +150,7 @@ That keeps:
 - HomePC aligned via SSH
 - `htown` aligned via SSH
 - all three machines aligned on the `KEVIN` skill and learnings templates
+- all three machines aligned on the installed `self-improving-agent` skill from ClawHub
 
 The local Shadow sync intentionally preserves Shadow-specific config details while still refreshing the shared baseline.
 

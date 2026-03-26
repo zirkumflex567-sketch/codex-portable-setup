@@ -20,6 +20,7 @@ Use:
 
 - `using-superpowers`
 - `kevin`
+- `self-improving-agent`
 
 as the baseline pair for normal coding and research tasks in this setup.
 
@@ -29,6 +30,7 @@ as the baseline pair for normal coding and research tasks in this setup.
 
 - `using-superpowers`
 - `kevin`
+- `self-improving-agent`
 - `feature-dev`
 
 Use this for normal implementation work where codebase discovery, design, implementation, testing, and review are all needed.
@@ -37,6 +39,7 @@ Use this for normal implementation work where codebase discovery, design, implem
 
 - `using-superpowers`
 - `kevin`
+- `self-improving-agent`
 - `writing-plans`
 
 Then execute with one of:
@@ -113,7 +116,7 @@ When a correction, recurring failure, or missing capability appears:
 3. if it belongs in the shared baseline, update `codex-portable-setup`
 4. commit, push, and run `scripts/sync-all.ps1`
 
-Use the `kevin` skill as the universal overlay for this behavior.
+Use the `kevin` skill as the universal overlay for this behavior and `self-improving-agent` as the mandatory logging/promotion companion.
 
 ## Announcement Pattern
 
@@ -121,7 +124,7 @@ Before substantial work, say which skills/plugins are being used.
 
 Examples:
 
-- `Using using-superpowers + kevin + feature-dev for structured feature work.`
+- `Using using-superpowers + kevin + self-improving-agent + feature-dev for structured feature work.`
 - `Using find-docs for current external documentation and Playwright for browser verification.`
 - `Using notebooklm MCP for source-grounded answers from your notebook library.`
 
@@ -143,6 +146,7 @@ Before the final response:
 
 - Start with `using-superpowers`
 - Add `kevin`
+- Add `self-improving-agent`
 - If implementation-focused: add `feature-dev`
 - If large or ambiguous: add `writing-plans`
 - If plan exists: use `subagent-driven-development` or `executing-plans`
@@ -174,6 +178,7 @@ Before the final response:
 - `frontend-design`
 - `kevin`
 - `notebooklm`
+- `self-improving-agent`
 - `requesting-code-review`
 - `subagent-driven-development`
 - `test-driven-development`
@@ -191,7 +196,7 @@ The point is to force a disciplined workflow:
 
 1. Check skills
 2. Check plugins
-3. Add the `kevin` overlay for substantial work
+3. Add the `kevin` overlay and `self-improving-agent` for substantial work
 4. Choose deliberately
 5. Execute with the chosen workflow
 6. Capture reusable learnings

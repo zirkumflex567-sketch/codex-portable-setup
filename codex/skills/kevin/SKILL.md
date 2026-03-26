@@ -9,6 +9,8 @@ Use this as the universal overlay skill for this setup.
 
 Do not use `kevin` as the only skill. Pair it with the best process, planning, domain, and verification skills for the task.
 
+For substantial work in this setup, `self-improving-agent` is mandatory alongside `kevin`.
+
 ## Start Rule
 
 At the start of substantial work:
@@ -23,6 +25,10 @@ If the active shell is `powershell`, use PowerShell-native commands only.
 ## Self-Improvement Loop
 
 Read `references/self-improvement.md` when you need the exact logging and promotion rules.
+
+The self-improvement behavior in this setup is anchored to the installed `self-improving-agent` skill from:
+
+- `https://clawhub.ai/pskoett/self-improving-agent`
 
 Use the self-improvement loop whenever one of these happens:
 
@@ -77,7 +83,7 @@ Do not fix the baseline on only one machine if the change should apply everywher
 
 For normal tasks in this setup, prefer:
 
-- `using-superpowers` + `kevin`
+- `using-superpowers` + `kevin` + `self-improving-agent`
 
 Then add the task-specific skill stack:
 
