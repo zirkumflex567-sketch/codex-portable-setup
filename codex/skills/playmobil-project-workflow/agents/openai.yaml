@@ -1,0 +1,4 @@
+interface:
+  display_name: "Playmobil Project Workflow"
+  short_description: "Playmobil repo workflow with GitHub and docs"
+  default_prompt: "Arbeite im Repo playmobil-privatverkauf, halte Doku und GitHub nach jedem Meilenstein aktuell und validiere Aenderungen vor dem Abschluss."

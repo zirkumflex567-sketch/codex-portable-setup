@@ -83,6 +83,22 @@ Use these when execution benefits from real tooling:
 
 Do not fake these workflows with text-only reasoning when the plugin is clearly the right tool.
 
+## Windows / PowerShell Rule
+
+In this setup, command execution must respect the active shell.
+
+If the shell is `powershell`:
+- write commands in PowerShell-native syntax
+- do not use Bash-style separators such as `&&`
+- prefer PowerShell-safe separators like `;` or run commands separately
+- use Windows-safe quoting and path handling
+- distinguish between actual syntax failures and mere encoding/output-display issues
+- when file encoding matters, explicitly use UTF-8-safe behavior
+
+Short version:
+- PowerShell shell means PowerShell rules
+- never assume Bash semantics on Windows just because the command itself looks simple
+
 ## Announcement Pattern
 
 Before substantial work, say which skills/plugins are being used.

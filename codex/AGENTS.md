@@ -67,6 +67,21 @@ When execution requires real tools, prefer installed plugins over ad-hoc alterna
 
 If a plugin is clearly the right tool, use it instead of faking the work with text-only reasoning.
 
+## Shell And Platform Rule
+
+This environment is Windows-first when the active shell is `powershell`.
+
+When running terminal commands in this environment:
+- use PowerShell-native syntax, quoting, and separators
+- do not use Bash-only chaining like `&&` or other shell assumptions that break in Windows PowerShell
+- prefer separate commands or PowerShell-safe separators such as `;`
+- treat mojibake or umlaut glitches as a possible console/codepage display issue, but do not misdiagnose syntax failures as encoding problems
+- when text encoding matters, explicitly prefer UTF-8-safe read/write behavior
+
+In short:
+- if the shell is `powershell`, act like you are in PowerShell, not Bash
+- do not improvise cross-shell syntax when a PowerShell-native version is available
+
 ## Announcement Requirement
 
 At the start of substantial tasks, explicitly say which skills/plugins are being used and why.

@@ -11,11 +11,16 @@ New-Item -ItemType Directory -Force -Path $targetSkills | Out-Null
 Copy-Item -Force (Join-Path $sourceCodex "AGENTS.md") $targetCodex
 Copy-Item -Force (Join-Path $sourceCodex "WORKFLOW.md") $targetCodex
 
-if (-not (Test-Path (Join-Path $targetCodex "config.toml"))) {
-    Copy-Item -Force (Join-Path $sourceCodex "config.template.toml") (Join-Path $targetCodex "config.toml")
-} else {
-    Copy-Item -Force (Join-Path $sourceCodex "config.template.toml") (Join-Path $targetCodex "config.template.toml")
+$configTarget = Join-Path $targetCodex "config.toml"
+$configTemplate = Join-Path $sourceCodex "config.template.toml"
+$configTemplateTarget = Join-Path $targetCodex "config.template.toml"
+
+if (Test-Path $configTarget) {
+    Copy-Item -Force $configTarget "$configTarget.pre-portable.bak"
 }
+
+Copy-Item -Force $configTemplate $configTemplateTarget
+Copy-Item -Force $configTemplate $configTarget
 
 Get-ChildItem (Join-Path $sourceCodex "skills") -Directory | ForEach-Object {
     $destination = Join-Path $targetSkills $_.Name
@@ -27,8 +32,10 @@ Get-ChildItem (Join-Path $sourceCodex "skills") -Directory | ForEach-Object {
 }
 
 Write-Host ""
+Write-Host "Installing portable CLIs..."
+npm install -g ctx7 notebooklm-mcp
+
+Write-Host ""
 Write-Host "Portable Codex setup installed."
 Write-Host "Review %USERPROFILE%\\.codex\\config.toml for machine-specific MCP paths."
-Write-Host "Then install portable CLIs if needed:"
-Write-Host "  npm install -g ctx7 notebooklm-mcp"
 Write-Host "Finally restart Codex."
