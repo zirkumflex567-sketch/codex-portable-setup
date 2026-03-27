@@ -40,6 +40,35 @@ If you update figure identification:
 - add direct source links whenever a comparison is strong enough to cite
 - mark uncertainty honestly; use theme-world or figure type instead of inventing exact set IDs
 
+### 2b. Figure Research Runtime Rules
+
+For the current Playmobil figure-identification pipeline, follow these operational rules:
+
+- Prefer the visible browser path for Google Lens and browser research. Do not assume headless Lens is stable.
+- Use `chrome` when the browser channel matters; it proved more stable than long-running Edge loops in this repo.
+- Never run large chained multi-batch browser loops for figure research.
+- Use one small batch per process start:
+  - preferred: `2` to `4` figures per run
+  - only increase if the exact machine/browser combination is demonstrably stable
+- After each batch:
+  - confirm which figure IDs were actually written
+  - kill leftover browser processes if needed
+  - resume only from the still-missing IDs
+- For table-wide research datasets, treat overlapping batch files as expected intermediate artifacts and deduplicate by `id` before producing a final merged dataset.
+
+Identity resolution rules:
+
+- Accept as actionable:
+  - exact article/set number plus concrete figure label
+  - series/set number plus figure number, e.g. `71456 Serie 25 Mädchen Nr. 3`
+  - concrete figure-type labels with a strong article number from trusted sources
+- Reject as non-actionable:
+  - shop/archive/location/price titles
+  - generic portal pages
+  - marketplace noise that does not identify one figure cleanly
+- Do not query eBay or derive prices until identity is actionable.
+- If identity is unresolved, keep the figure unresolved instead of generating broad eBay noise.
+
 ### 3. Keep Project Documentation Current
 
 After each meaningful milestone, append a dated entry to:
